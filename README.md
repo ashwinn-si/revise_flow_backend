@@ -106,7 +106,7 @@ server/
 ### 1. Clone and Install
 ```bash
 git clone <repository-url>
-cd taskFlow/server
+cd Revise Flow/server
 npm install
 ```
 

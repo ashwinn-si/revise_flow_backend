@@ -1,7 +1,7 @@
 {
-  "name": "reviseflow-server",
+  "name": "Revise Flow-server",
   "version": "1.0.0",
-  "description": "reviseFlow backend API server",
+  "description": "Revise Flow backend API server",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
