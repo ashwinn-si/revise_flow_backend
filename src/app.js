@@ -29,16 +29,23 @@ const corsOptions = {
     // Allow requests from CLIENT_URL and no origin (mobile apps, Postman, etc.)
     const allowedOrigins = [
       process.env.CLIENT_URL,
-      "https://reviseflow.ashwinsi.in" // Production domain
-    ];
+      "https://reviseflow.ashwinsi.in", // Production domain
+      "https://revise-flow-frontend.vercel.app" // Vercel deployment
+    ].filter(Boolean); // Remove any undefined values
+
     if (process.env.NODE_ENV === "development") {
       allowedOrigins.push("http://localhost:3000");
       allowedOrigins.push("http://localhost:3001");
+      allowedOrigins.push("http://localhost:5173"); // Vite default
     }
+
+    console.log('CORS check - Origin:', origin);
+    console.log('CORS check - Allowed origins:', allowedOrigins);
 
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log('CORS rejected origin:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
