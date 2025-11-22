@@ -54,7 +54,7 @@ const getCalendarDay = async (req, res, next) => {
       scheduledDate: item.revision.scheduledDate,
       status: item.revision.status,
       sentReminder: item.revision.sentReminder,
-    });
+    }));
 
     res.json({
       success: true,
