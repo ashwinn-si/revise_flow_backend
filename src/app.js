@@ -29,9 +29,12 @@ const corsOptions = {
     // Allow requests from CLIENT_URL and no origin (mobile apps, Postman, etc.)
     const allowedOrigins = [
       process.env.CLIENT_URL,
-      'http://localhost:3000',
-      'http://localhost:3001'// Development fallback
+      "https://reviseflow.ashwinsi.in" // Production domain
     ];
+    if (process.env.NODE_ENV === "development") {
+      allowedOrigins.push("http://localhost:3000");
+      allowedOrigins.push("http://localhost:3001");
+    }
 
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
