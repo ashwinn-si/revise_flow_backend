@@ -1,7 +1,7 @@
 {
-  "name": "revisionflow-server",
+  "name": "reviseflow-server",
   "version": "1.0.0",
-  "description": "RevisionFlow backend API server",
+  "description": "reviseFlow backend API server",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

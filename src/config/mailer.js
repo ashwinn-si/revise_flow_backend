@@ -60,12 +60,12 @@ const sendEmail = async (options) => {
 // Email templates
 const emailTemplates = {
   verification: (verificationUrl, email) => ({
-    subject: 'Verify Your TaskFlow Account',
+    subject: 'Verify Your reviseFlow Account',
     html: `
       <div style="max-width: 600px; margin: 0 auto; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
         <!-- Header -->
         <div style="text-align: center; margin-bottom: 40px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(203, 213, 225, 0.5); border-radius: 24px; padding: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
-          <h1 style="color: #8B5CF6; margin-bottom: 10px; font-size: 28px; font-weight: 700;">📝 TaskFlow</h1>
+          <h1 style="color: #8B5CF6; margin-bottom: 10px; font-size: 28px; font-weight: 700;">📝 reviseFlow</h1>
           <h2 style="color: #0F172A; margin: 0; font-weight: 600; font-size: 24px;">Welcome aboard!</h2>
           <p style="color: #64748B; margin: 15px 0 0 0; font-size: 16px;">Let's verify your email to get started</p>
         </div>
@@ -73,7 +73,7 @@ const emailTemplates = {
         <!-- Main Content -->
         <div style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(203, 213, 225, 0.5); border-radius: 24px; padding: 40px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
           <p style="font-size: 16px; line-height: 1.6; color: #475569; margin-bottom: 30px;">
-            Thank you for joining TaskFlow! To complete your account setup and start organizing your tasks with spaced revision reminders, please verify your email address.
+            Thank you for joining reviseFlow! To complete your account setup and start organizing your tasks with spaced revision reminders, please verify your email address.
           </p>
           
           <div style="text-align: center; margin: 40px 0;">
@@ -95,7 +95,7 @@ const emailTemplates = {
             🎯 Start your spaced revision journey today
           </p>
           <p style="color: #94A3B8; font-size: 12px; margin: 0;">
-            If you didn't create an account with TaskFlow, please ignore this email.
+            If you didn't create an account with reviseFlow, please ignore this email.
           </p>
         </div>
       </div>
@@ -103,12 +103,12 @@ const emailTemplates = {
   }),
 
   passwordReset: (resetUrl, email) => ({
-    subject: 'Reset Your TaskFlow Password',
+    subject: 'Reset Your reviseFlow Password',
     html: `
       <div style="max-width: 600px; margin: 0 auto; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
         <!-- Header -->
         <div style="text-align: center; margin-bottom: 40px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(203, 213, 225, 0.5); border-radius: 24px; padding: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
-          <h1 style="color: #8B5CF6; margin-bottom: 10px; font-size: 28px; font-weight: 700;">🔐 TaskFlow</h1>
+          <h1 style="color: #8B5CF6; margin-bottom: 10px; font-size: 28px; font-weight: 700;">🔐 reviseFlow</h1>
           <h2 style="color: #0F172A; margin: 0; font-weight: 600; font-size: 24px;">Password Reset Request</h2>
           <p style="color: #64748B; margin: 15px 0 0 0; font-size: 16px;">Secure your account with a new password</p>
         </div>
@@ -116,7 +116,7 @@ const emailTemplates = {
         <!-- Main Content -->
         <div style="background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(203, 213, 225, 0.5); border-radius: 24px; padding: 40px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
           <p style="font-size: 16px; line-height: 1.6; color: #475569; margin-bottom: 20px;">
-            We received a request to reset your password for your TaskFlow account. Click the button below to create a new secure password.
+            We received a request to reset your password for your reviseFlow account. Click the button below to create a new secure password.
           </p>
           
           <div style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); border: 1px solid #F59E0B; border-radius: 12px; padding: 16px; margin: 25px 0;">
@@ -152,12 +152,12 @@ const emailTemplates = {
   }),
 
   dailyRevisions: (user, revisions, date) => ({
-    subject: `🎯 ${revisions.length} revision${revisions.length > 1 ? 's' : ''} due today - TaskFlow`,
+    subject: `🎯 ${revisions.length} revision${revisions.length > 1 ? 's' : ''} due today - reviseFlow`,
     html: `
       <div style="max-width: 650px; margin: 0 auto; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
         <!-- Header -->
         <div style="text-align: center; margin-bottom: 40px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(203, 213, 225, 0.5); border-radius: 24px; padding: 30px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
-          <h1 style="color: #8B5CF6; margin-bottom: 10px; font-size: 28px; font-weight: 700;">📝 TaskFlow</h1>
+          <h1 style="color: #8B5CF6; margin-bottom: 10px; font-size: 28px; font-weight: 700;">🔐 reviseFlow</h1>
           <h2 style="color: #0F172A; margin: 0; font-weight: 600; font-size: 24px;">Good morning, ${user}!</h2>
           <p style="color: #64748B; margin: 15px 0 0 0; font-size: 16px;">Time for your spaced repetition session 🧠</p>
         </div>
@@ -210,7 +210,7 @@ const emailTemplates = {
           <div style="text-align: center; border-top: 2px solid #E2E8F0; padding-top: 25px;">
             <a href="${process.env.CLIENT_URL}" 
                style="background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white; padding: 16px 28px; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 16px; display: inline-block; margin-right: 15px; box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);">
-              🚀 Open TaskFlow
+              🚀 Open reviseFlow
             </a>
             <a href="${process.env.CLIENT_URL}/settings" 
                style="background: linear-gradient(135deg, #10B981, #059669); color: white; padding: 16px 28px; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 16px; display: inline-block; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);">

@@ -14,8 +14,6 @@ const getCalendarDay = async (req, res, next) => {
       });
     }
 
-    console.log('getCalendarDay called for date:', date, 'user:', req.user._id);
-
     const targetDate = new Date(date);
 
     // Validate date
@@ -33,8 +31,6 @@ const getCalendarDay = async (req, res, next) => {
     const endOfDay = new Date(targetDate);
     endOfDay.setHours(23, 59, 59, 999);
 
-    console.log('Date boundaries for completed tasks:', { startOfDay, endOfDay });
-
     // Get tasks completed on this date
     const completedTasks = await Task.find({
       user: req.user._id,
@@ -45,13 +41,8 @@ const getCalendarDay = async (req, res, next) => {
       isArchived: false,
     }).sort({ createdAt: -1 });
 
-    console.log(`Found ${completedTasks.length} completed tasks for ${date}`);
-
     // Get revisions scheduled for this date
-    console.log('Fetching revisions scheduled for date:', date);
     const revisionsScheduled = await Task.findRevisionsDueOnDate(req.user._id, date);
-
-    console.log(`Raw revisions from database:`, revisionsScheduled.length);
 
     // Format the revisions data
     const revisionsScheduledForDate = revisionsScheduled.map(item => ({
@@ -63,9 +54,7 @@ const getCalendarDay = async (req, res, next) => {
       scheduledDate: item.revision.scheduledDate,
       status: item.revision.status,
       sentReminder: item.revision.sentReminder,
-    }));
-
-    console.log(`Formatted ${revisionsScheduledForDate.length} revisions for response`);
+    });
 
     res.json({
       success: true,
@@ -76,7 +65,6 @@ const getCalendarDay = async (req, res, next) => {
       },
     });
   } catch (error) {
-    console.error('Error in getCalendarDay:', error);
     next(error);
   }
 };

@@ -118,12 +118,6 @@ const updateTask = async (req, res, next) => {
   try {
     const { title, notes, tags, priority, completedDate, revisions } = req.body;
 
-    console.log('Update task request:', {
-      taskId: req.params.id,
-      body: req.body,
-      userId: req.user._id
-    });
-
     // Validate ObjectId format
     if (!require('mongoose').Types.ObjectId.isValid(req.params.id)) {
       return res.status(400).json({
@@ -169,23 +163,13 @@ const updateTask = async (req, res, next) => {
       });
     }
 
-    console.log('Task before save:', {
-      title: task.title,
-      completedDate: task.completedDate,
-      revisionsCount: task.revisions.length,
-      revisions: task.revisions.map(r => ({ scheduledDate: r.scheduledDate, status: r.status }))
-    });
-
     const updatedTask = await task.save();
-
-    console.log('Task saved successfully:', updatedTask._id);
 
     res.json({
       success: true,
       data: updatedTask,
     });
   } catch (error) {
-    console.error('Error updating task:', error);
     next(error);
   }
 };
@@ -246,25 +230,18 @@ const markRevisionComplete = async (req, res, next) => {
 
     // Handle postpone action differently - move to next date
     if (status === 'postponed') {
-      console.log('Postponing revision:', req.params.revisionId, 'for task:', req.params.id);
-
       const result = task.postponeRevision(req.params.revisionId);
 
       if (!result || !result.success) {
-        console.error('Postpone failed for revision:', req.params.revisionId);
         return res.status(404).json({
           success: false,
           error: 'Revision not found or postpone failed',
         });
       }
 
-      console.log('Postpone successful, saving task...');
-
       try {
         await task.save();
-        console.log('Task saved successfully after postpone');
       } catch (saveError) {
-        console.error('Error saving task after postpone:', saveError);
         return res.status(500).json({
           success: false,
           error: 'Failed to save postponed revision',

@@ -172,9 +172,7 @@ TaskSchema.methods.addDefaultRevisions = function () {
   ];
 };
 
-TaskSchema.methods.updateRevisionStatus = function (revisionId, status = 'done') {
-  console.log('updateRevisionStatus called with:', { revisionId, status });
-
+TaskSchema.methods.postponeRevision = function (revisionId) {
   // Convert string ID to ObjectId if needed
   const mongoose = require('mongoose');
   let objectId;
@@ -183,12 +181,10 @@ TaskSchema.methods.updateRevisionStatus = function (revisionId, status = 'done')
       ? new mongoose.Types.ObjectId(revisionId)
       : revisionId;
   } catch (error) {
-    console.error('Invalid revision ID format:', revisionId);
     return false;
   }
 
   const revision = this.revisions.id(objectId);
-  console.log('Found revision for update:', revision ? { id: revision._id.toString(), currentStatus: revision.status } : 'null');
 
   if (revision) {
     revision.status = status;
@@ -197,10 +193,8 @@ TaskSchema.methods.updateRevisionStatus = function (revisionId, status = 'done')
     } else {
       revision.completedAt = undefined;
     }
-    console.log('Revision status updated to:', status);
     return true;
   }
-  console.error('Revision not found for status update:', revisionId);
   return false;
 };
 
@@ -219,9 +213,6 @@ TaskSchema.methods.rescheduleRevision = function (revisionId, newDate) {
 };
 
 TaskSchema.methods.postponeRevision = function (revisionId) {
-  console.log('postponeRevision called with revisionId:', revisionId);
-  console.log('Available revisions:', this.revisions.map(r => ({ id: r._id.toString(), status: r.status, scheduledDate: r.scheduledDate })));
-
   // Convert string ID to ObjectId if needed
   const mongoose = require('mongoose');
   let objectId;
@@ -230,15 +221,12 @@ TaskSchema.methods.postponeRevision = function (revisionId) {
       ? new mongoose.Types.ObjectId(revisionId)
       : revisionId;
   } catch (error) {
-    console.error('Invalid revision ID format:', revisionId);
     return false;
   }
 
   const revision = this.revisions.id(objectId);
-  console.log('Found revision:', revision ? { id: revision._id.toString(), status: revision.status } : 'null');
 
   if (!revision) {
-    console.error('Revision not found for ID:', revisionId);
     return false;
   }
 
@@ -249,18 +237,9 @@ TaskSchema.methods.postponeRevision = function (revisionId) {
   tomorrow.setUTCDate(currentScheduledDate.getUTCDate() + 1);
   tomorrow.setUTCHours(0, 0, 0, 0); // Set to start of day in UTC
 
-  console.log('Current scheduled date:', currentScheduledDate.toISOString());
-  console.log('Setting new date (UTC):', tomorrow.toISOString());
-
   // Update the revision
   revision.scheduledDate = tomorrow;
   revision.status = 'pending'; // Reset to pending so it appears in next day's revisions
-
-  console.log('Revision updated:', {
-    id: revision._id.toString(),
-    scheduledDate: revision.scheduledDate.toISOString(),
-    status: revision.status
-  });
 
   return { success: true, newDate: tomorrow, nextInterval: 1 };
 }; TaskSchema.methods.getRevisionsDue = function (date) {
@@ -292,20 +271,12 @@ TaskSchema.statics.findByDateRange = function (userId, startDate, endDate) {
 };
 
 TaskSchema.statics.findRevisionsDueOnDate = function (userId, date) {
-  console.log('findRevisionsDueOnDate called with:', { userId, date });
-
   const targetDate = new Date(date);
   const startOfDay = new Date(targetDate);
   startOfDay.setUTCHours(0, 0, 0, 0);
 
   const endOfDay = new Date(targetDate);
   endOfDay.setUTCHours(23, 59, 59, 999);
-
-  console.log('Date boundaries:', {
-    targetDate: targetDate.toISOString(),
-    startOfDay: startOfDay.toISOString(),
-    endOfDay: endOfDay.toISOString()
-  });
 
   const pipeline = [
     { $match: { user: new mongoose.Types.ObjectId(userId), isArchived: false } },
@@ -327,20 +298,7 @@ TaskSchema.statics.findRevisionsDueOnDate = function (userId, date) {
     }
   ];
 
-  console.log('MongoDB aggregation pipeline:', JSON.stringify(pipeline, null, 2));
-
-  return this.aggregate(pipeline).then(results => {
-    console.log(`Found ${results.length} revisions for date ${date}`);
-    results.forEach((result, index) => {
-      console.log(`Revision ${index + 1}:`, {
-        taskTitle: result.title,
-        revisionId: result.revisionId.toString(),
-        scheduledDate: result.revision.scheduledDate.toISOString(),
-        status: result.revision.status
-      });
-    });
-    return results;
-  });
+  return this.aggregate(pipeline);
 };
 
 // Pre-save middleware
