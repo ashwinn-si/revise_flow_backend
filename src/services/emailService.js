@@ -201,15 +201,17 @@ const sendDailyRevisionReminder = async (email, name, revisions) => {
     }).join('');
 
     // Create a single combined event for all revisions
-    const combinedEventTitle = `Daily Revision Session - ${revisions.length} task${revisions.length > 1 ? 's' : ''}`;
-    const combinedDescription = `Revision tasks for today (8:00 AM - 12:00 PM):\n\n${revisions.map((rev, index) =>
+    // Generate task titles list for calendar title
+    const taskTitlesList = revisions.map(rev => `• ${rev.taskTitle}`).join('\n');
+    const combinedEventTitle = `Daily Revision Session\n${taskTitlesList}`;
+    const combinedDescription = `Revision tasks:\n\n${revisions.map((rev, index) =>
       `${index + 1}. ${rev.taskTitle} (${rev.isFirstRevision ? 'First' : `Day ${rev.revisionDay}`} Revision)\n   - ${rev.taskDescription || 'No description provided'}\n   - Originally completed: ${new Date(rev.taskCreatedAt).toLocaleDateString()}\n`
     ).join('\n')}`;
 
     // Create event data for the combined revision session
     const today = new Date();
-    const startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 8, 0); // 8:00 AM
-    const endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 0); // 12:00 PM
+    const startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 0); // 6:00 PM
+    const endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 20, 0); // 8:00 PM
 
     const combinedEventData = {
       title: combinedEventTitle,
