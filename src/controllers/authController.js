@@ -157,7 +157,7 @@ const login = async (req, res, next) => {
       try {
         await sendEmail({
           to: user.email,
-          subject: 'Your RevisionFlow Login Code',
+          subject: 'Your ReviseFlow Login Code',
           html: `<p>Your login code is: <strong>${otp}</strong></p><p>This code expires in 10 minutes.</p>`,
         });
       } catch (emailError) {

@@ -63,12 +63,12 @@ const generateICSContent = (event) => {
   };
 
   const now = new Date();
-  const uid = `revision-${Date.now()}@revisionflow.com`;
+  const uid = `revision-${Date.now()}@ReviseFlow.com`;
 
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//RevisionFlow//Revision Reminder//EN',
+    'PRODID:-//ReviseFlow//Revision Reminder//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
@@ -110,7 +110,7 @@ const createRevisionEvent = (task, revision) => {
     description,
     startDate: revision.scheduledDate,
     endDate: new Date(new Date(revision.scheduledDate).getTime() + 60 * 60 * 1000), // 1 hour
-    location: 'RevisionFlow - Spaced Repetition Session'
+    location: 'ReviseFlow - Spaced Repetition Session'
   };
 };
 

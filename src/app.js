@@ -96,7 +96,7 @@ app.use('/api/admin', adminRoutes);
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
-    name: 'RevisionFlow API',
+    name: 'ReviseFlow API',
     version: '1.0.0',
     description: 'Spaced revision reminder system',
     endpoints: {

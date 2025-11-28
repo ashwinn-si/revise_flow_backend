@@ -1,8 +1,8 @@
-# RevisionFlow Server
+# reviseFlow Server
 
-**Backend API for the RevisionFlow spaced revision learning application**
+**Backend API for the ReviseFlow spaced revision learning application**
 
-RevisionFlow Server is a Node.js/Express backend that powers the RevisionFlow application, providing authentication, task management, revision scheduling, and email notifications using scientifically-backed spaced repetition principles.
+ReviseFlow Server is a Node.js/Express backend that powers the ReviseFlow application, providing authentication, task management, revision scheduling, and email notifications using scientifically-backed spaced repetition principles.
 
 ## 🚀 Features
 
@@ -119,7 +119,7 @@ Edit `.env` with your configuration:
 
 ```env
 # Database
-MONGO_URI=mongodb://localhost:27017/revisionflow
+MONGO_URI=mongodb://localhost:27017/reviseFlow
 
 # JWT Secrets
 JWT_SECRET=your-256-bit-secret-key
@@ -169,7 +169,7 @@ mongod --config /usr/local/etc/mongod.conf
 
 **MongoDB Atlas (Cloud):**
 ```env
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/revisionflow
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/reviseFlow
 ```
 
 ### 5. Google Calendar Setup (Optional)
@@ -386,7 +386,7 @@ node scripts/testCronMail.js
 ### Production Environment
 ```env
 NODE_ENV=production
-MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/revisionflow
+MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/reviseFlow
 CLIENT_URL=https://your-domain.com
 JWT_SECRET=super-strong-production-secret
 ```
@@ -395,7 +395,7 @@ JWT_SECRET=super-strong-production-secret
 
 #### Heroku
 ```bash
-heroku create revisionflow-api
+heroku create reviseFlow-api
 heroku addons:create mongolab:sandbox
 heroku config:set NODE_ENV=production
 git push heroku main
@@ -410,7 +410,7 @@ git push heroku main
 ```bash
 # PM2 for process management
 npm install -g pm2
-pm2 start src/server.js --name "revisionflow-api"
+pm2 start src/server.js --name "reviseFlow-api"
 pm2 startup
 pm2 save
 ```

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Database initialization script for RevisionFlow
+ * Database initialization script for ReviseFlow
  * 
  * Usage:
  *   node scripts/initDb.js                    - Create default admin user
@@ -22,7 +22,7 @@ const hasFlag = (flag) => args.includes(flag);
 // Show help
 if (hasFlag('--help') || hasFlag('-h')) {
   console.log(`
-RevisionFlow Database Initialization Script
+ReviseFlow Database Initialization Script
 
 Usage:
   node scripts/initDb.js                    - Create default admin user

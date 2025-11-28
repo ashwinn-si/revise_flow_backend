@@ -1,6 +1,6 @@
 # Database Utility Functions
 
-This document explains the database utility functions created for the RevisionFlow application.
+This document explains the database utility functions created for the reviseFlow application.
 
 ## Overview
 
@@ -146,7 +146,7 @@ When clearing the database, all collections are affected:
 Make sure these environment variables are set:
 
 ```env
-MONGO_URI=mongodb://localhost:27017/revisionflow
+MONGO_URI=mongodb://localhost:27017/reviseFlow
 NODE_ENV=development  # 'production' blocks clear/reset operations
 ```
 

@@ -1,5 +1,5 @@
 /**
- * Timezone utility functions for the RevisionFlow application
+ * Timezone utility functions for the ReviseFlow application
  */
 
 /**

@@ -65,19 +65,19 @@ const sendVerificationEmail = async (email, verificationToken, name) => {
     const verificationUrl = `${process.env.CLIENT_URL}/verify-email?token=${verificationToken}`;
 
     const mailOptions = {
-      from: `"RevisionFlow" <${process.env.FROM_EMAIL}>`,
+      from: `"ReviseFlow" <${process.env.FROM_EMAIL}>`,
       to: email,
-      subject: 'Verify Your Email Address - RevisionFlow',
+      subject: 'Verify Your Email Address - ReviseFlow',
       html: `
         <div style="max-width: 600px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
           <div style="text-align: center; margin-bottom: 40px;">
-            <h1 style="color: #6366f1; margin-bottom: 10px;">📝 RevisionFlow</h1>
+            <h1 style="color: #6366f1; margin-bottom: 10px;">📝 ReviseFlow</h1>
             <h2 style="color: #374151; margin-top: 0;">Welcome aboard, ${name}!</h2>
           </div>
           
           <div style="background: #f9fafb; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
             <p style="font-size: 16px; line-height: 1.6; color: #374151; margin-bottom: 20px;">
-              Thanks for signing up for RevisionFlow! To get started with spaced revision reminders, 
+              Thanks for signing up for ReviseFlow! To get started with spaced revision reminders, 
               please verify your email address by clicking the button below.
             </p>
             
@@ -121,13 +121,13 @@ const sendPasswordResetEmail = async (email, resetToken, name) => {
     const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
 
     const mailOptions = {
-      from: `"RevisionFlow" <${process.env.FROM_EMAIL}>`,
+      from: `"ReviseFlow" <${process.env.FROM_EMAIL}>`,
       to: email,
-      subject: 'Password Reset Request - RevisionFlow',
+      subject: 'Password Reset Request - ReviseFlow',
       html: `
         <div style="max-width: 600px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
           <div style="text-align: center; margin-bottom: 40px;">
-            <h1 style="color: #6366f1; margin-bottom: 10px;">📝 RevisionFlow</h1>
+            <h1 style="color: #6366f1; margin-bottom: 10px;">📝 ReviseFlow</h1>
             <h2 style="color: #374151; margin-top: 0;">Password Reset Request</h2>
           </div>
           
@@ -137,7 +137,7 @@ const sendPasswordResetEmail = async (email, resetToken, name) => {
             </p>
             
             <p style="font-size: 16px; line-height: 1.6; color: #374151; margin-bottom: 20px;">
-              We received a request to reset your RevisionFlow password. 
+              We received a request to reset your ReviseFlow password. 
               Click the button below to create a new password:
             </p>
             
@@ -225,12 +225,12 @@ const sendDailyRevisionReminder = async (email, name, revisions) => {
     const mailOptions = {
       from: `"${process.env.FROM_NAME}" <${process.env.FROM_EMAIL}>`,
       to: email,
-      subject: `🎯 ${revisions.length} revision${revisions.length > 1 ? 's' : ''} due today - RevisionFlow`,
+      subject: `🎯 ${revisions.length} revision${revisions.length > 1 ? 's' : ''} due today - ReviseFlow`,
       html: `
         <div style="max-width: 650px; margin: 0 auto; padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8fafc;">
           <!-- Header -->
           <div style="text-align: center; margin-bottom: 40px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-            <h1 style="color: #6366f1; margin-bottom: 10px; font-size: 28px;">📝 RevisionFlow</h1>
+            <h1 style="color: #6366f1; margin-bottom: 10px; font-size: 28px;">📝 ReviseFlow</h1>
             <h2 style="color: #374151; margin: 0; font-weight: 600;">Good morning, ${name}!</h2>
             <p style="color: #6b7280; margin: 10px 0 0 0; font-size: 16px;">Time for your spaced repetition session 🧠</p>
           </div>
@@ -284,7 +284,7 @@ const sendDailyRevisionReminder = async (email, name, revisions) => {
               <a href="${process.env.CLIENT_URL}" 
                  style="background: #6366f1; color: white; padding: 14px 28px; text-decoration: none; 
                         border-radius: 8px; font-weight: 600; display: inline-block; font-size: 16px; margin-right: 15px;">
-                🚀 Open RevisionFlow
+                🚀 Open ReviseFlow
               </a>
               <a href="${process.env.CLIENT_URL}/settings" 
                  style="background: #10b981; color: white; padding: 14px 28px; text-decoration: none; 
@@ -328,13 +328,13 @@ const sendTwoFactorCode = async (email, code, name) => {
     const transporter = initializeTransporter();
 
     const mailOptions = {
-      from: `"RevisionFlow" <${process.env.FROM_EMAIL}>`,
+      from: `"ReviseFlow" <${process.env.FROM_EMAIL}>`,
       to: email,
-      subject: 'Your Two-Factor Authentication Code - RevisionFlow',
+      subject: 'Your Two-Factor Authentication Code - ReviseFlow',
       html: `
         <div style="max-width: 600px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
           <div style="text-align: center; margin-bottom: 40px;">
-            <h1 style="color: #6366f1; margin-bottom: 10px;">📝 RevisionFlow</h1>
+            <h1 style="color: #6366f1; margin-bottom: 10px;">📝 ReviseFlow</h1>
             <h2 style="color: #374151; margin-top: 0;">Two-Factor Authentication</h2>
           </div>
           

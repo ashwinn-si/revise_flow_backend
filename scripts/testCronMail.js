@@ -250,7 +250,7 @@ const displayEmailConfig = () => {
  * Main execution function
  */
 const main = async () => {
-  console.log('[START] RevisionFlow - Daily Reminder Email Test\n');
+  console.log('[START] ReviseFlow - Daily Reminder Email Test\n');
 
   // Display configuration
   displayEmailConfig();
