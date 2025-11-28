@@ -211,7 +211,7 @@ const sendDailyRevisionReminder = async (email, name, revisions) => {
     // Create event data for the combined revision session
     const today = new Date();
     const startTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 0); // 6:00 PM
-    const endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 20, 0); // 8:00 PM
+    const endTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 21, 0); // 9:00 PM
 
     const combinedEventData = {
       title: combinedEventTitle,
@@ -258,7 +258,7 @@ const sendDailyRevisionReminder = async (email, name, revisions) => {
             <div style="text-align: center; background: white; border: 2px solid #6366f1; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
               <h4 style="color: #6366f1; margin: 0 0 15px 0; font-size: 18px;">📅 Add All Tasks to Calendar</h4>
               <p style="color: #6b7280; margin: 0 0 20px 0; font-size: 14px;">
-                Block 8:00 AM - 12:00 PM for your revision session with all tasks included
+                Block 6:00 PM - 9:00 PM for your revision session with all tasks included
               </p>
               <div style="display: inline-block;">
                 <a href="${combinedCalendarLinks.google}" 
