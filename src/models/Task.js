@@ -172,7 +172,7 @@ TaskSchema.methods.addDefaultRevisions = function () {
   ];
 };
 
-TaskSchema.methods.postponeRevision = function (revisionId) {
+TaskSchema.methods.updateRevisionStatus = function (revisionId, status) {
   // Convert string ID to ObjectId if needed
   const mongoose = require('mongoose');
   let objectId;

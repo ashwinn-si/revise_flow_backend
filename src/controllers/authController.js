@@ -342,6 +342,13 @@ const refresh = async (req, res, next) => {
     res.json({
       success: true,
       accessToken,
+      user: {
+        id: user._id,
+        email: user.email,
+        twoFactorEnabled: user.twoFactorEnabled,
+        timezone: user.timezone,
+        isVerified: user.isVerified,
+      },
     });
   } catch (error) {
     next(error);
